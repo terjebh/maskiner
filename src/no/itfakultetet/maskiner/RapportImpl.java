@@ -4,6 +4,8 @@ public class RapportImpl implements Rapport {
 
     @Override
     public  void visRapport(String maskinType) {
+        int maskiner = Datamaskin.antallDatamaskiner;
+        System.out.println( maskiner + (maskiner == 1? " maskin" : "maskiner") + " i parken:");
         int sum = 0;
         if (maskinType.equals("Desktop")) {
             int antallMaskiner = Desktop.antallDesktopper;

@@ -25,7 +25,6 @@ public class App {
             } else if (menyvalg.equals("3")) {
                 Server s = new Server();
             } else if (menyvalg.equals("4")) {
-                System.out.println(Datamaskin.antallDatamaskiner + " maskiner i parken:");
                 RapportImpl rapport = new RapportImpl();
                 if (Laptop.antallLaptoper > 0) rapport.visRapport("Laptop");
                 if (Desktop.antallDesktopper > 0) rapport.visRapport("Desktop");
