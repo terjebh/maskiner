@@ -14,16 +14,6 @@ public class Datamaskin {
         antallDatamaskiner++;
     }
 
-    public Datamaskin(Integer årsmodell, String merke, String prosessor, Integer pris, Integer vekt, Integer ram) {
-        this();
-        this.årsmodell = årsmodell;
-        this.merke = merke;
-        this.prosessor = prosessor;
-        this.pris = pris;
-        this.vekt = vekt;
-        this.ram = ram;
-    }
-
     public static void printSum() {
         System.out.printf("%-22s %-6d\n","TOTALT",sumPrisDatamaskiner);
         System.out.println("-".repeat(30));
