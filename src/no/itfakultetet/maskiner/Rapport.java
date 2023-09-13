@@ -1,4 +1,4 @@
-package no.itfakultetet.appxx;
+package no.itfakultetet.maskiner;
 
 public interface Rapport {
     void visRapport(String maskinType);

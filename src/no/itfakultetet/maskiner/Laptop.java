@@ -1,10 +1,8 @@
-package no.itfakultetet.appxx;
+package no.itfakultetet.maskiner;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import static no.itfakultetet.appxx.Desktop.antallDesktopper;
 
 public class Laptop extends Datamaskin {
 

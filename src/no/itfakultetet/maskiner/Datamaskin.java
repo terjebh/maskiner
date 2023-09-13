@@ -1,4 +1,4 @@
-package no.itfakultetet.appxx;
+package no.itfakultetet.maskiner;
 
 public class Datamaskin {
     public static int antallDatamaskiner;
