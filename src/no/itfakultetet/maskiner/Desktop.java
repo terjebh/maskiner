@@ -17,10 +17,10 @@ public class Desktop extends Datamaskin {
         System.out.println("Ny Desktop");
         Desktop d = new Desktop();
         Scanner leggInn = new Scanner(System.in);
-        System.out.println("Tast inn merke: ");
+        System.out.print("Tast inn merke: ");
         String merke = leggInn.nextLine();
         d.setMerke(merke);
-        System.out.println("Tast inn årsmodell: ");
+        System.out.print("Tast inn årsmodell: ");
         Integer modell = leggInn.nextInt();
         d.setÅrsmodell(modell);
         System.out.print("Tast inn pris: ");

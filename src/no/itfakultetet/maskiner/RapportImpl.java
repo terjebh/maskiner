@@ -42,6 +42,7 @@ public class RapportImpl implements Rapport {
     @Override
     public void lagreRapportIDB() {
         // TODO
+        // Lag metode for å lagre maskinparken i en database - f.eks. PostgreSQL eller MongoDB
     }
 
 
