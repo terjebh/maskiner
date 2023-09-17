@@ -23,7 +23,6 @@ public class Postgres {
                     "  (merke, modell, pris) VALUES " +
                     " (?, ?, ?);";
             PreparedStatement preparedStatement = conn.prepareStatement(INSERT_MASKIN);
-
             preparedStatement.setString(1, maskin.getMerke());
             preparedStatement.setInt(2, maskin.getÅrsmodell());
             preparedStatement.setInt(3, maskin.getPris());
@@ -33,8 +32,11 @@ public class Postgres {
             System.out.println("Noe gikk galt: \nFeilkode:" + e.getErrorCode() + "\nFeilmelding: " + e.getMessage());
         }
 
+    } // Skutt på insertMaskin()
 
-    }
+
+
+
 
 
 }
