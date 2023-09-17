@@ -1,5 +1,6 @@
 package no.itfakultetet.maskiner;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +19,7 @@ public class Laptop extends Datamaskin {
 
     }
 
-    static void lagNyLaptop() {
+    static void lagNyLaptop() throws SQLException {
         System.out.println("Ny Laptop");
         Laptop l = new Laptop();
         Scanner leggInn = new Scanner(System.in);
@@ -32,7 +33,16 @@ public class Laptop extends Datamaskin {
         Integer pris = leggInn.nextInt();
         l.setPris(pris);
         laptopper.add(l);
+        System.out.print("Lagre i Database? J/N");
+        String lagreValg = leggInn.next();
+        if (lagreValg.toUpperCase().equals("J")) {
+            Postgres pg = new Postgres();
+            pg.insertMaskin((Datamaskin) l);
+        };
+
     }
+
+
 
     public int getSkjermstørrelse() {
         return skjermstørrelse;

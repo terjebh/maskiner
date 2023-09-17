@@ -1,10 +1,11 @@
 package no.itfakultetet.maskiner;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Scanner in = new Scanner(System.in);
 
         while (true) {
@@ -31,6 +32,8 @@ public class App {
                 if (Desktop.antallDesktopper > 0) rapport.visRapport("Desktop");
                 if (Server.antallServere > 0) rapport.visRapport("Server");
                 rapport.printRapportFooter();
+                Scanner lagreSc = new Scanner(System.in);
+                System.out.println("Lagre i Database");
             } else {
                 System.out.println("Ukjent menyvalg");
             }
