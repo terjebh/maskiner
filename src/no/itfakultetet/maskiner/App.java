@@ -26,9 +26,11 @@ public class App {
                 Server s = new Server();
             } else if (menyvalg.equals("4")) {
                 RapportImpl rapport = new RapportImpl();
+                rapport.printRapportHeader();
                 if (Laptop.antallLaptoper > 0) rapport.visRapport("Laptop");
                 if (Desktop.antallDesktopper > 0) rapport.visRapport("Desktop");
-                if(Datamaskin.antallDatamaskiner > 0) Datamaskin.printSum();
+                if (Server.antallServere > 0) rapport.visRapport("Server");
+                rapport.printRapportFooter();
             } else {
                 System.out.println("Ukjent menyvalg");
             }

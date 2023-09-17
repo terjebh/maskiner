@@ -34,21 +34,6 @@ public class Laptop extends Datamaskin {
         laptopper.add(l);
     }
 
-    public static void visLaptopper() {
-        System.out.println(antallLaptoper + (antallLaptoper > 1? " Laptopper: " : " Laptop"));
-        System.out.println("-".repeat(30));
-        System.out.printf("%-15s %-6s %-6s\n", "Merke", "Modell", "Pris");
-        laptopper.forEach(a -> {
-            System.out.printf("%-15s %-6d %-6d\n", a.getMerke(), a.getÅrsmodell(), a.getPris());
-        });
-        System.out.println("-".repeat(30));
-        int sum = laptopper.stream().mapToInt(Datamaskin::getPris).sum();
-        Datamaskin.sumPrisDatamaskiner+=sum;
-        System.out.printf("%-22s %-6d\n","SUM",sum);
-        System.out.println("-".repeat(30));
-        System.out.println();
-    }
-
     public int getSkjermstørrelse() {
         return skjermstørrelse;
     }

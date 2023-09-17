@@ -14,11 +14,6 @@ public class Datamaskin {
         antallDatamaskiner++;
     }
 
-    public static void printSum() {
-        System.out.printf("%-22s %-6d\n","TOTALT",sumPrisDatamaskiner);
-        System.out.println("-".repeat(30));
-    }
-
     public Integer getÅrsmodell() {
         return årsmodell;
     }
@@ -49,6 +44,7 @@ public class Datamaskin {
 
     public void setPris(Integer pris) {
         this.pris = pris;
+        sumPrisDatamaskiner+=pris;
     }
 
     public Integer getVekt() {
