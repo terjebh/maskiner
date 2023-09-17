@@ -1,6 +1,6 @@
 package no.itfakultetet.maskiner;
 
-public class Server {
+public class Server extends Datamaskin {
     public static int antallServere;
 
 

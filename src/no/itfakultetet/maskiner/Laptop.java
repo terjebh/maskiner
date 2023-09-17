@@ -1,5 +1,6 @@
 package no.itfakultetet.maskiner;
 
+import javax.xml.crypto.Data;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,17 +12,16 @@ public class Laptop extends Datamaskin {
 
     private int skjermstørrelse;
     private String batteriType;
-    static List<Laptop> laptopper = new ArrayList<>();
+    static List<Datamaskin> laptopper = new ArrayList<>();
 
     public Laptop() {
         super();
         antallLaptoper++;
-
     }
 
     static void lagNyLaptop() throws SQLException {
         System.out.println("Ny Laptop");
-        Laptop l = new Laptop();
+        Datamaskin l = new Laptop();
         Scanner leggInn = new Scanner(System.in);
         System.out.print("Tast inn merke: ");
         String merke = leggInn.nextLine();
@@ -33,11 +33,10 @@ public class Laptop extends Datamaskin {
         Integer pris = leggInn.nextInt();
         l.setPris(pris);
         laptopper.add(l);
-        System.out.print("Lagre i Database? J/N");
+        System.out.print("Lagre i Database? (J/N): ");
         String lagreValg = leggInn.next();
         if (lagreValg.toUpperCase().equals("J")) {
-            Postgres pg = new Postgres();
-            pg.insertMaskin((Datamaskin) l);
+            Postgres.insertMaskin(l);
         };
 
     }
