@@ -1,4 +1,8 @@
-package no.itfakultetet.maskiner;
+package no.itfakultetet.maskiner.view;
+
+import no.itfakultetet.maskiner.dao.Postgres;
+import no.itfakultetet.maskiner.model.Datamaskin;
+import no.itfakultetet.maskiner.view.Rapport;
 
 import java.io.IOException;
 import java.nio.file.Files;

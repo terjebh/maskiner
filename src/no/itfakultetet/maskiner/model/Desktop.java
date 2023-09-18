@@ -1,8 +1,8 @@
-package no.itfakultetet.maskiner;
+package no.itfakultetet.maskiner.model;
+
+import no.itfakultetet.maskiner.dao.Postgres;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Desktop extends Datamaskin {

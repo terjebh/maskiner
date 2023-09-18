@@ -1,4 +1,4 @@
-package no.itfakultetet.maskiner;
+package no.itfakultetet.maskiner.model;
 
 public class Datamaskin {
 

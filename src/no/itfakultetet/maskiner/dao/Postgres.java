@@ -1,4 +1,9 @@
-package no.itfakultetet.maskiner;
+package no.itfakultetet.maskiner.dao;
+
+import no.itfakultetet.maskiner.model.Datamaskin;
+import no.itfakultetet.maskiner.model.Desktop;
+import no.itfakultetet.maskiner.model.Laptop;
+import no.itfakultetet.maskiner.model.Server;
 
 import java.sql.*;
 import java.util.ArrayList;

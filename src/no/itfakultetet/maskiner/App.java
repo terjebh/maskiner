@@ -1,5 +1,10 @@
 package no.itfakultetet.maskiner;
 
+import no.itfakultetet.maskiner.model.Desktop;
+import no.itfakultetet.maskiner.model.Laptop;
+import no.itfakultetet.maskiner.model.Server;
+import no.itfakultetet.maskiner.view.RapportImpl;
+
 import java.sql.SQLException;
 import java.util.Scanner;
 

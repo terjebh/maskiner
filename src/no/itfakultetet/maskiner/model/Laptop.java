@@ -1,9 +1,8 @@
-package no.itfakultetet.maskiner;
+package no.itfakultetet.maskiner.model;
 
-import javax.xml.crypto.Data;
+import no.itfakultetet.maskiner.dao.Postgres;
+
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Laptop extends Datamaskin {
@@ -24,7 +23,7 @@ public class Laptop extends Datamaskin {
         setPris(pris);
     }
 
-    static void lagNyLaptop() throws SQLException {
+    public static void lagNyLaptop() throws SQLException {
         System.out.println("Ny Laptop");
         Datamaskin l = new Laptop();
         Scanner leggInn = new Scanner(System.in);

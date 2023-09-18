@@ -1,4 +1,4 @@
-package no.itfakultetet.maskiner;
+package no.itfakultetet.maskiner.view;
 
 import java.sql.SQLException;
 

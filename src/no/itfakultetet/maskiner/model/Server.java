@@ -1,4 +1,6 @@
-package no.itfakultetet.maskiner;
+package no.itfakultetet.maskiner.model;
+
+import no.itfakultetet.maskiner.model.Datamaskin;
 
 public class Server extends Datamaskin {
     public static int antallServere;
