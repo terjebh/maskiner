@@ -1,8 +1,7 @@
 package no.itfakultetet.maskiner;
 
 public class Datamaskin {
-    public static long antallDatamaskiner;
-    public static int sumPrisDatamaskiner;
+
     private Integer årsmodell;
     private String merke;
     private String prosessor;
@@ -11,7 +10,7 @@ public class Datamaskin {
     private Integer ram;
 
     public Datamaskin() {
-        antallDatamaskiner++;
+
     }
 
     public Integer getÅrsmodell() {
@@ -44,7 +43,6 @@ public class Datamaskin {
 
     public void setPris(Integer pris) {
         this.pris = pris;
-        sumPrisDatamaskiner+=pris;
     }
 
     public Integer getVekt() {

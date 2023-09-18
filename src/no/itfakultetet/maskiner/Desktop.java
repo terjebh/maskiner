@@ -6,12 +6,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Desktop extends Datamaskin {
-    public static int antallDesktopper;
-    static List<Datamaskin> desktopper = new ArrayList<>();
 
     public Desktop() {
-        super();
-        antallDesktopper++;
+
     }
 
     public Desktop(String merke, int modell, int pris) {
@@ -32,7 +29,6 @@ public class Desktop extends Datamaskin {
         System.out.print("Tast inn pris: ");
         Integer pris = leggInn.nextInt();
         d.setPris(pris);
-        desktopper.add(d);
         System.out.print("Lagre i Database? (J/N): ");
         String lagreValg = leggInn.next();
         if (lagreValg.equalsIgnoreCase("J")) {

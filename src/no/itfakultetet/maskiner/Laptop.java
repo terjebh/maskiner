@@ -12,11 +12,10 @@ public class Laptop extends Datamaskin {
 
     private int skjermstørrelse;
     private String batteriType;
-    static List<Datamaskin> laptopper = new ArrayList<>();
+
 
     public Laptop() {
-        super();
-        antallLaptoper++;
+
     }
 
     public Laptop(String merke, int modell, int pris) {
@@ -38,7 +37,6 @@ public class Laptop extends Datamaskin {
         System.out.print("Tast inn pris: ");
         Integer pris = leggInn.nextInt();
         l.setPris(pris);
-        laptopper.add(l);
         System.out.print("Lagre i Database? (J/N): ");
         String lagreValg = leggInn.next();
         if (lagreValg.equalsIgnoreCase("J")) {

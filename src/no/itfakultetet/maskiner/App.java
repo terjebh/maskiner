@@ -26,7 +26,8 @@ public class App {
             } else if (menyvalg.equals("3")) {
                 Server s = new Server();
             } else if (menyvalg.equals("4")) {
-                RapportImpl.lagRapport();
+                RapportImpl rapport = new RapportImpl();
+                rapport.lagRapport();
             } else {
                 System.out.println("Ukjent menyvalg");
             }
