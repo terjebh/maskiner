@@ -1,6 +1,5 @@
 package no.itfakultetet.maskiner;
 
-import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -26,15 +25,13 @@ public class RapportImpl implements Rapport {
         System.out.print("Lagre som tekstfil? (J/N): ");
         if (lagreSc.next().equalsIgnoreCase("J")) {
             lagreRapportTilFil(rapportText);
-        } else {
-            return;
         }
 
     }
 
     @Override
     public void visRapport(String maskinType) throws SQLException {
-        int sum = 0;
+        int sum;
         List<Datamaskin> maskinListe = Postgres.hentMaskiner(maskinType);
         long antallMaskiner = maskinListe.size();
         antallDatamaskiner += antallMaskiner;
@@ -43,25 +40,25 @@ public class RapportImpl implements Rapport {
         rapportText.append(antallMaskiner).append(antallMaskiner > 1 ? " " + maskinType + "er: \n" : " " + maskinType + "\n");
         printTabellHeader();
         maskinListe.forEach(a -> fm.format("%-25s %-6d %6d\n", a.getMerke(), a.getÅrsmodell(), a.getPris()));
-        rapportText.append("-".repeat(40) + "\n");
+        rapportText.append("-".repeat(40)).append("\n");
         fm.format("%-32s %6d\n", "SUM " + maskinType, sum);
-        rapportText.append("-".repeat(40) + "\n");
+        rapportText.append("-".repeat(40)).append("\n");
     }
 
 
     public void printRapportHeader() {
         rapportText.append("Inventarliste\n");
-        rapportText.append("-".repeat(40) + "\n");
+        rapportText.append("-".repeat(40)).append("\n");
     }
 
     private void printTabellHeader() {
-        rapportText.append("-".repeat(40) + "\n");
+        rapportText.append("-".repeat(40)).append("\n");
         fm.format("%-25s %-6s %6s\n", "Merke", "Modell", "Pris");
     }
 
     public void printRapportFooter() {
 
-        rapportText.append("-".repeat(40) + "\n");
+        rapportText.append("-".repeat(40)).append("\n");
         fm.format("%-32s %6d\n", "SUM TOTALT", sumPrisDatamaskiner);
         long maskiner = antallDatamaskiner;
         fm.format("%-32s %6d\n", "MASKINER TOTALT", maskiner);
