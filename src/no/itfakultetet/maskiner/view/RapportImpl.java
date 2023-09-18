@@ -64,8 +64,7 @@ public class RapportImpl implements Rapport {
 
         rapportText.append("-".repeat(40)).append("\n");
         fm.format("%-32s %6d\n", "SUM TOTALT", sumPrisDatamaskiner);
-        long maskiner = antallDatamaskiner;
-        fm.format("%-32s %6d\n", "MASKINER TOTALT", maskiner);
+        fm.format("%-32s %6d\n", "MASKINER TOTALT", antallDatamaskiner);
         fm.format("-".repeat(40) + "\n");
 
     }

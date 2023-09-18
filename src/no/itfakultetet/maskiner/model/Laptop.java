@@ -12,7 +12,6 @@ public class Laptop extends Datamaskin {
     private int skjermstørrelse;
     private String batteriType;
 
-
     public Laptop() {
 
     }

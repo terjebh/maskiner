@@ -17,9 +17,7 @@ public class Postgres {
 
         String url = "jdbc:postgresql://itfakultetet.no/maskiner?user=kurs&password=kurs123&ssl=false";
         try (Connection conn = DriverManager.getConnection(url)) {
-            Statement st = conn.createStatement();
-            // ResultSet rs = st.executeQuery(query);
-            // ResultSetMetaData rsmd = rs.getMetaData();
+
             String tabell = null;
             if (maskin instanceof Laptop) tabell = "laptop";
             if (maskin instanceof Desktop) tabell = "desktop";
