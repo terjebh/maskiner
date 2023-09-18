@@ -1,6 +1,9 @@
 package no.itfakultetet.maskiner;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Postgres {
     Connection conn;
@@ -27,16 +30,39 @@ public class Postgres {
             preparedStatement.setInt(2, maskin.getÅrsmodell());
             preparedStatement.setInt(3, maskin.getPris());
             preparedStatement.executeUpdate();
-            System.out.println(maskin.getMerke()+" ble lagret i databasen");
+            System.out.println(maskin.getMerke() + " ble lagret i databasen");
         } catch (SQLException e) {
             System.out.println("Noe gikk galt: \nFeilkode:" + e.getErrorCode() + "\nFeilmelding: " + e.getMessage());
         }
 
-    } // Skutt på insertMaskin()
+    } // Slutt på insertMaskin()
 
 
+    public static List<Datamaskin> hentMaskiner(String maskinType) throws SQLException {
+
+        List<Datamaskin> maskinliste = new ArrayList<>();
+        String url = "jdbc:postgresql://itfakultetet.no/maskiner?user=kurs&password=kurs123&ssl=false";
+        try (Connection conn = DriverManager.getConnection(url)) {
 
 
+            final String query = "SELECT merke, modell, pris from " + maskinType + " ORDER BY merke;";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                switch (Objects.requireNonNull(maskinType)) {
+                    case "Laptop" -> maskinliste.add(new Laptop(rs.getString(1), rs.getInt(2), rs.getInt(3)));
+                    case "Desktop" -> maskinliste.add(new Desktop(rs.getString(1), rs.getInt(2), rs.getInt(3)));
+                    case "Server" -> maskinliste.add(new Server(rs.getString(1), rs.getInt(2), rs.getInt(3)));
+                }
+            }
 
 
+        } catch (SQLException e) {
+            System.out.println("Noe gikk galt: \nFeilkode:" + e.getErrorCode() + "\nFeilmelding: " + e.getMessage());
+        }
+
+        return maskinliste;
+
+    }
 }

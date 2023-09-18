@@ -1,7 +1,7 @@
 package no.itfakultetet.maskiner;
 
 public class Datamaskin {
-    public static int antallDatamaskiner;
+    public static long antallDatamaskiner;
     public static int sumPrisDatamaskiner;
     private Integer årsmodell;
     private String merke;

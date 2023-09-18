@@ -14,6 +14,11 @@ public class Desktop extends Datamaskin {
         antallDesktopper++;
     }
 
+    public Desktop(String merke, int modell, int pris) {
+        setMerke(merke);
+        setÅrsmodell(modell);
+        setPris(pris);
+    }
     public static void lagNyDesktop() throws SQLException {
         System.out.println("Ny Desktop");
         Desktop d = new Desktop();
@@ -30,7 +35,7 @@ public class Desktop extends Datamaskin {
         desktopper.add(d);
         System.out.print("Lagre i Database? (J/N): ");
         String lagreValg = leggInn.next();
-        if (lagreValg.toUpperCase().equals("J")) {
+        if (lagreValg.equalsIgnoreCase("J")) {
             Postgres.insertMaskin(d);
         };
     }

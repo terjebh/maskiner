@@ -19,6 +19,12 @@ public class Laptop extends Datamaskin {
         antallLaptoper++;
     }
 
+    public Laptop(String merke, int modell, int pris) {
+        setMerke(merke);
+        setÅrsmodell(modell);
+        setPris(pris);
+    }
+
     static void lagNyLaptop() throws SQLException {
         System.out.println("Ny Laptop");
         Datamaskin l = new Laptop();
@@ -35,7 +41,7 @@ public class Laptop extends Datamaskin {
         laptopper.add(l);
         System.out.print("Lagre i Database? (J/N): ");
         String lagreValg = leggInn.next();
-        if (lagreValg.toUpperCase().equals("J")) {
+        if (lagreValg.equalsIgnoreCase("J")) {
             Postgres.insertMaskin(l);
         };
 

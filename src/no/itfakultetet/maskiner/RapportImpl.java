@@ -1,57 +1,82 @@
 package no.itfakultetet.maskiner;
 
+import javax.xml.crypto.Data;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.*;
+
 public class RapportImpl implements Rapport {
 
-    public void printRapportHeader() {
-        int maskiner = Datamaskin.antallDatamaskiner;
-        System.out.println(maskiner + (maskiner == 1 ? " maskin" : " maskiner") + " i parken:");
-    }
+    private static StringBuilder rapportText = new StringBuilder();
+    private static Formatter fm = new Formatter(rapportText);
 
-    @Override
-    public void visRapport(String maskinType) {
-        int sum = 0;
-        if (maskinType.equals("Desktop")) {
-            int antallMaskiner = Desktop.antallDesktopper;
-            sum = Desktop.desktopper.stream().mapToInt(Datamaskin::getPris).sum();
-            System.out.println(antallMaskiner + (antallMaskiner > 1 ? " Desktopper: " : " Desktop"));
-            printTabellHeader();
-            Desktop.desktopper.forEach(a -> System.out.printf("%-15s %-6d %-6d\n", a.getMerke(), a.getÅrsmodell(), a.getPris()));
-        } else if (maskinType.equals("Laptop")) {
-            int antallMaskiner = Laptop.antallLaptoper;
-            System.out.println(antallMaskiner + (antallMaskiner > 1 ? " Laptopper: " : " Laptop"));
-            sum = Laptop.laptopper.stream().mapToInt(Datamaskin::getPris).sum();
-            printTabellHeader();
-            Laptop.laptopper.forEach(a -> System.out.printf("%-15s %-6d %-6d\n", a.getMerke(), a.getÅrsmodell(), a.getPris()));
+    public static void lagRapport() throws SQLException {
+        printRapportHeader();
+        visRapport("Laptop");
+        visRapport("Desktop");
+        // TODO
+        // visRapport("Server");
+        printRapportFooter();
+        System.out.println(rapportText.toString());
+        Scanner lagreSc = new Scanner(System.in);
+        System.out.print("Lagre som tekstfil? (J/N): ");
+        if (lagreSc.next().equalsIgnoreCase("J")) {
+            lagreRapportTilFil(rapportText);
+        } else {
+            return;
         }
 
-        System.out.println("-".repeat(30));
-        System.out.printf("%-22s %-6d\n", "SUM", sum);
-        System.out.println("-".repeat(30));
+    }
+
+    public static void visRapport(String maskinType) throws SQLException {
+        int sum = 0;
+        List<Datamaskin> maskinListe = Postgres.hentMaskiner(maskinType);
+        long antallMaskiner = maskinListe.size();
+        Datamaskin.antallDatamaskiner += antallMaskiner;
+        sum = maskinListe.stream().mapToInt(Datamaskin::getPris).sum();
+        rapportText.append(antallMaskiner).append(antallMaskiner > 1 ? " " + maskinType + "er: \n" : " " + maskinType + "\n");
+        printTabellHeader();
+        maskinListe.forEach(a -> fm.format("%-25s %-6d %6d\n", a.getMerke(), a.getÅrsmodell(), a.getPris()));
+        rapportText.append("-".repeat(40) + "\n");
+        fm.format("%-32s %6d\n", "SUM " + maskinType, sum);
+        rapportText.append("-".repeat(40) + "\n");
+    }
+
+    public static void printRapportHeader() {
+        rapportText.append("Inventarliste\n");
+        rapportText.append("-".repeat(40) + "\n");
+    }
+
+    private static void printTabellHeader() {
+        rapportText.append("-".repeat(40) + "\n");
+        fm.format("%-25s %-6s %6s\n", "Merke", "Modell", "Pris");
+    }
+
+    public static void printRapportFooter() {
+
+        rapportText.append("-".repeat(40) + "\n");
+        fm.format("%-32s %6d\n", "SUM TOTALT", Desktop.sumPrisDatamaskiner);
+        long maskiner = Datamaskin.antallDatamaskiner;
+        fm.format("%-32s %6d\n", "MASKINER TOTALT", maskiner);
+        fm.format("-".repeat(40) + "\n");
 
     }
 
-    private void printTabellHeader() {
-        System.out.println("-".repeat(30));
-        System.out.printf("%-15s %-6s %-6s\n", "Merke", "Modell", "Pris");
+
+    public static void lagreRapportTilFil(StringBuilder rapportText) {
+        String filnavn = "Maskinpark_Rapport_" + LocalDate.now() + ".txt";
+        try {
+            Files.write(Paths.get(filnavn), Collections.singleton(rapportText));
+            System.out.println("Rapporten er lagret som: " + filnavn);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    public void printRapportFooter() {
-
-        System.out.println("-".repeat(30));
-        System.out.printf("%-22s %-6d\n", "TOTALT", Desktop.sumPrisDatamaskiner);
-        System.out.println("-".repeat(30));
-        System.out.println();
-    }
-
-
-    @Override
-    public void lagreRapportTilFil() {
-        // TODO
-        // Lag metoder som skriver til file i ulike formater: csv, Json, XML, Excel
-    }
-
-    @Override
-    public void lagreRapportIDB() {
+    public static void lagreRapportIDB() {
         // TODO
         // Lag metode for å lagre maskinparken i en database - f.eks. PostgreSQL eller MongoDB
     }

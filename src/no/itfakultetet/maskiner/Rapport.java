@@ -1,9 +1,17 @@
 package no.itfakultetet.maskiner;
 
+import java.sql.SQLException;
+
 public interface Rapport {
-    void visRapport(String maskinType);
+    static void visRapport(String maskinType) throws SQLException {
 
-    void lagreRapportTilFil();
+    }
 
-    void lagreRapportIDB();
+    static void lagreRapportTilFil() {
+
+    }
+
+    static void lagreRapportIDB() {
+
+    }
 }
